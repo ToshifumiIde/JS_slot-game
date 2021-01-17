@@ -19,10 +19,14 @@
       const main = document.querySelector("main");
       main.appendChild(section);
 
-      this.stop.addEventListener("click" , ()=>{
+      this.stop.addEventListener("click", () => {
         clearTimeout(this.timeoutId);
-      })
+        panelLeft--;
 
+        if (panelLeft === 0) {
+          checkResult();
+        }
+      });
     }
     getRandomImage = () => {
       function imgRoot(img) {
@@ -38,9 +42,34 @@
         this.spin();
       }, 50);
     };
+
+    isUnmatched(p1, p2) {
+      // if(this.img.src !== p1.img.src && this.img.src !== p2.img.src){
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+      return this.img.src !== p1.img.src && this.img.src !== p2.img.src;
+    }
+    unmatch() {
+      this.img.classList.add("unmatched");
+    }
+  }
+  function checkResult() {
+    if (panels[0].isUnmatched(panels[1], panels[2])) {
+      panels[0].unmatch();
+    }
+    if (panels[1].isUnmatched(panels[0], panels[2])) {
+      panels[1].unmatch();
+    }
+    if (panels[2].isUnmatched(panels[0], panels[1])) {
+      panels[2].unmatch();
+    }
   }
 
   const panels = [new Panel(), new Panel(), new Panel()];
+
+  let panelLeft = 3;
 
   //
   const spin = document.getElementById("js-spin");

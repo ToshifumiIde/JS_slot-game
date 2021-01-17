@@ -51,3 +51,7 @@ main {
 .stop:active {
   box-shadow: none;
 }
+
+.unmatched{
+  opacity: 0.8;
+}
