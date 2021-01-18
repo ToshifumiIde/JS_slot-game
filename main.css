@@ -52,6 +52,10 @@ main {
   box-shadow: none;
 }
 
-.unmatched{
+.unmatched {
+  opacity: 0.8;
+}
+
+.inactive {
   opacity: 0.8;
 }
