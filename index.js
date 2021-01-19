@@ -25,7 +25,9 @@
         clearTimeout(this.timeoutId);
         panelLeft--;
         if (panelLeft === 0) {
+          spin.classList.remove("inactive");
           checkResult();
+          panelLeft = 3;
         }
       });
     }
@@ -55,6 +57,10 @@
     unmatch = () => {
       this.img.classList.add("unmatched");
     };
+    active = () => {
+      this.stop.classList.remove("inactive");
+      this.img.classList.remove("unmatched");
+    };
   }
   function checkResult() {
     if (panels[0].isUnmatched(panels[1], panels[2])) {
@@ -78,6 +84,7 @@
     if (spin.classList.contains("inactive")) return;
     spin.classList.add("inactive");
     panels.forEach((panel) => {
+      panel.active();
       panel.spin();
     });
   });
